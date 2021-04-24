@@ -1,0 +1,33 @@
+import {useState} from 'react'
+import { apiPost } from '../../server/api'
+
+export default function CreatePost() {
+  const [title, setTitle] = useState('')
+
+  async function handleSubmit(e) {
+    e.preventDefault()
+
+    await apiPost.post('posts', {
+      title
+    }).then(res => {
+      if(res.status !== 201) {
+        console.log("Error!")
+      }
+    })
+
+    setTitle('')
+  }
+
+  return(
+    <div>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group" >
+          <label>Title</label>
+          <input className="form-control" value={title} onChange={ e => setTitle(e.target.value) } />
+        </div>
+
+        <button className="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  )
+}
