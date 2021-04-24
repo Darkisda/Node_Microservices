@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { apiPost } from '../../server/api'
+import { apiEvent } from '../../server/api'
 import CreateComment from '../Comments/CreateComment'
 import ListComments from '../Comments/ListComents'
 
@@ -8,7 +8,7 @@ export default function ListPost() {
   const [isLoaded, setLoaded] = useState(false)
   
   async function fetchPosts() {
-    const response = await apiPost.get('/posts')
+    const response = await apiEvent.get('/posts')
 
     setPosts(response.data)
   }
@@ -31,8 +31,8 @@ export default function ListPost() {
             >
             <div className="card-body">
               <h3>{post.title}</h3>
-              
-              <ListComments postId={post.id} />
+
+              <ListComments comments={post.comments} />
               <CreateComment postId={post.id} />
             </div>
           </div>

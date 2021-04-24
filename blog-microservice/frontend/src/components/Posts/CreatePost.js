@@ -9,10 +9,6 @@ export default function CreatePost() {
 
     await apiPost.post('posts', {
       title
-    }).then(res => {
-      if(res.status !== 201) {
-        console.log("Error!")
-      }
     })
 
     setTitle('')

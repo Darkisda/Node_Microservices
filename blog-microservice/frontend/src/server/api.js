@@ -8,4 +8,8 @@ const apiComment = axios.create({
   baseURL: 'http://localhost:4001'
 })
 
-export { apiPost, apiComment }
+const apiEvent = axios.create({
+  baseURL: 'http://localhost:4002'
+})
+
+export { apiPost, apiComment, apiEvent }
