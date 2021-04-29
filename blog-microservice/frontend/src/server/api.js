@@ -1,15 +1,15 @@
 import axios from 'axios'
 
 const apiPost = axios.create({
-  baseURL: 'http://localhost:4000'
+  baseURL: 'http://posts.com'
 })
 
 const apiComment = axios.create({
-  baseURL: 'http://localhost:4001'
+  baseURL: 'http://posts.com'
 })
 
 const apiEvent = axios.create({
-  baseURL: 'http://localhost:4002'
+  baseURL: 'http://posts.com'
 })
 
 export { apiPost, apiComment, apiEvent }

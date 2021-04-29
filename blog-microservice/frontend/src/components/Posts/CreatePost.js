@@ -7,7 +7,7 @@ export default function CreatePost() {
   async function handleSubmit(e) {
     e.preventDefault()
 
-    await apiPost.post('posts', {
+    await apiPost.post('posts/create', {
       title
     })
 
