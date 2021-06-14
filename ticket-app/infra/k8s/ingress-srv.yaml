@@ -9,7 +9,7 @@ metadata:
       name: ingress-service
 spec:
   rules:
-  - host: ticketing.dev
+  - host: ticketing.com
     http:
       paths:
         - path: /api/users/?(.*)
