@@ -1,6 +1,7 @@
 import express from 'express'
 import 'express-async-errors'
 import mongoose from 'mongoose'
+import cookieSession from 'cookie-session'
 
 import { currentUserRouter } from './routes/current-user'
 import { signInRouter } from './routes/signin'
@@ -11,7 +12,14 @@ import { NotFoundError } from './errors/not-found-error'
 import { ErrorHandler } from './middlewares/error-handler'
 
 const app = express()
+app.set('trust proxy', true)
 app.use(express.json())
+app.use(
+    cookieSession({
+        signed: false,
+        secure: true,
+    })
+)
 
 app.use(currentUserRouter)
 app.use(signInRouter)
@@ -25,6 +33,10 @@ app.get('*', async () => {
 app.use(ErrorHandler)
 
 const start = async () => {
+    if (!process.env.JWTSECRET) {
+        throw new Error('JWT-SECRET must be defined')
+    }
+
     try{
         await mongoose.connect('mongodb://auth-mongo-srv:27017/auth', {
             useNewUrlParser: true,

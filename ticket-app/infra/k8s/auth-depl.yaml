@@ -15,6 +15,12 @@ spec:
       containers:
       - name: auth
         image: darkisda/auth
+        env:
+          - name: JWTSECRET
+            valueFrom:
+              secretKeyRef:
+                name: jwtsecret
+                key: JWTSECRET
 ---
 apiVersion: v1
 kind: Service
